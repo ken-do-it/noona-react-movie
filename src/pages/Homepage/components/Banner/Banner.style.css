@@ -1,0 +1,41 @@
+
+.loading-spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: '100vh'
+}
+
+.banner{
+    height: 56vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* 배너 이미지  앞에  칸 만들어서 그라데이션 효과  */
+.banner::before {
+    content: "";
+    background: linear-gradient(to top, black, transparent);
+    position: absolute;
+    left: 0;
+    height: 56vh;
+    width: 100%;
+}
+
+
+.banner-text-area {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 2rem;
+}
+
+
+/* 우선순위 높게  */
+.banner-text-area > *{
+    z-index: 2;
+}
