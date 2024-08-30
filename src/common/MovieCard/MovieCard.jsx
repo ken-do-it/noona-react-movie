@@ -2,6 +2,7 @@ import React from 'react'
 import { Badge } from 'react-bootstrap'
 import './MovieCard.style.css'
 import { useMovieGenreQuery } from '../../hooks/useMovieGenre'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -12,9 +13,7 @@ import { useMovieGenreQuery } from '../../hooks/useMovieGenre'
 
 const MovieCard = ({movie}) => {
 
-//   const { data } = useMovieGenreQuery();
-// console.log("Fetched genre data:", data);
-
+const navigate = useNavigate()
 const {data: genreData} = useMovieGenreQuery()
 // console.log("ggg", genreData)
 
@@ -31,6 +30,12 @@ const {data: genreData} = useMovieGenreQuery()
 
 // console.log("Genre data:", genreData);
 
+
+const handleCardClick = () => {
+  // 카드를 클릭하면 영화 ID를 기반으로 상세 페이지로 이동
+  navigate(`/movies/${movie.id}`);
+};
+
 const showGenre =( genreIdList) => {
   if (!genreData) return []
   const genreNameList = genreIdList.map((id) => {
@@ -45,7 +50,9 @@ const showGenre =( genreIdList) => {
 
   return (
     <div 
-    style={{backgroundImage:"url("+`https://media.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`+")"}} className='movie-card'>
+    onClick={handleCardClick} // 카드 클릭 시 handleCardClick 함수 호출
+    style={{backgroundImage:"url("+`https://media.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`+")"}} 
+    className='movie-card'>
         
         
         <div className='overlay'> 
