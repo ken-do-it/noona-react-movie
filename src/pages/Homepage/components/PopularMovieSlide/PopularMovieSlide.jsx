@@ -18,7 +18,7 @@ import { responsive } from '../../../../constants/responsive';
 const PopularMovieSlide = () => {
 
     const {data, isLoading, isError, error } = usePopularMoviesQuery()
-    console.log("Fetched data:", data);
+    // console.log("Fetched data:", data);
 
 
     if (isLoading) {

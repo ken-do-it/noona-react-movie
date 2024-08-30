@@ -12,7 +12,7 @@ import { responsive } from '../../../../constants/responsive';
 const TopRatedMovieSlide = () => {
 
     const {data, isLoading, isError, error } = useTopRatedMoviesQuery()
-    console.log("Fetched data:", data);
+    // console.log("Fetched data:", data);
 
 
     if (isLoading) {

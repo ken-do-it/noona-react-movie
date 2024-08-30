@@ -13,7 +13,7 @@ import { responsive } from '../../../../constants/responsive';
 
 const UpComingMovieSlide = () => {
     const {data, isLoading, isError, error } = useUpComingMoviesQuery()
-    console.log("Fetched data:", data);
+    // console.log("Fetched data:", data);
 
 
     if (isLoading) {
