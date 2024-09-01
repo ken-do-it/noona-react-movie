@@ -1,18 +1,16 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
-import {useMovieDetailPageQuery} from '../../hooks/useMovieDetailPage'
-import { Spinner, Alert, Container, Row, Col } from 'react-bootstrap';
-
-
-
+import {React, useState} from 'react';
+import { useParams } from 'react-router-dom'; // useParams를 import하여 URL에서 ID를 가져옴
+import { Spinner, Alert, Container, Row, Col, Button } from 'react-bootstrap';
+import { useMovieDetailPageQuery } from '../../hooks/useMovieDetailPage';
+import Reviews from './Reviews';
+import RecommendMovie from './RecommendMovie'
+import MovieTrailer from './MovieTrailer';
 
 const MovieDetailPage = () => {
+  const { id } = useParams(); // URL 파라미터에서 영화 ID를 가져옴
+  const { data, isLoading, isError, error } = useMovieDetailPageQuery(id); // ID를 훅에 전달
 
-  // const [query,setQuery] = useMovieDetailParams()
-
-  const { id } = useParams(); // URL 파라미터에서 영화 ID 가져오기
-  const { data, isLoading, isError, error } = useMovieDetailPageQuery(id
-);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   if (isLoading) {
     return (
@@ -28,16 +26,15 @@ const MovieDetailPage = () => {
     return <Alert variant="danger">{error.message}</Alert>;
   }
 
-  const movie = data?.data; // API 응답에서 영화 데이터 추출
+  const movie = data; // API 응답에서 영화 데이터 추출
 
 
-
+  const handleTrailerShow = () => setShowTrailer(true);
+  const handleTrailerClose = () => setShowTrailer(false);
 
   return (
-    <div>
-      <Container>
+    <Container>
       <Row>
-
         <Col md={4}>
           {/* 영화 포스터 */}
           <img 
@@ -46,8 +43,6 @@ const MovieDetailPage = () => {
             className="img-fluid" 
           />
         </Col>
-
-
         <Col md={8}>
           <h1>{movie.title}</h1> {/* 영화 제목 */}
           <h3>Genres: {movie.genres.map(genre => genre.name).join(', ')}</h3> {/* 영화 장르 */}
@@ -55,13 +50,21 @@ const MovieDetailPage = () => {
           <p>Overview: {movie.overview}</p> {/* 영화 줄거리 */}
           <p>Budget: ${movie.budget.toLocaleString()}</p> {/* 영화 예산, 숫자에 콤마 추가 */}
           <p>Release Date: {movie.release_date}</p> {/* 개봉일 */}
+
+          <Button variant="primary" onClick={handleTrailerShow}>
+            예고편 보기
+          </Button>
         </Col>
-
-
       </Row>
+
+      <RecommendMovie id={id}/>
+      <Reviews id={id}/>
+
+      <MovieTrailer show={showTrailer} handleClose={handleTrailerClose} />
+
+
     </Container>
-    </div>
-  )
+  );
 }
 
-export default MovieDetailPage
+export default MovieDetailPage;

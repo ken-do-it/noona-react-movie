@@ -3,7 +3,7 @@ import axios from "axios";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 // API_KEY가 제대로 로드되고 있는지 확인하기 위해 로그 출력
-console.log("API_KEY:", API_KEY);
+// console.log("API_KEY:", API_KEY);
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",

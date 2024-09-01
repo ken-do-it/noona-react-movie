@@ -1,0 +1,25 @@
+.textBox {
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .textBox.fold {
+    max-height: 100px; /* 100px 높이로 제한 (필요에 따라 조정 가능) */
+
+  }
+  
+  .textBox.expanded {
+    max-height: none; /* 높이 제한을 제거 */
+  }
+  
+  .more-button {
+    background: none;
+    border: 2px solid red;
+    color: yellow;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    margin-top: 5px;
+  }
+  

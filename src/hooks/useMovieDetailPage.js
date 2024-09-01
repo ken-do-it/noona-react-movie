@@ -12,6 +12,7 @@ import api from "../utils/api"
         return useQuery ({
             queryKey: ['movie-details', id], // React Query에서 사용할 쿼리 키
             queryFn: () => fetchMovieDetails({ id }), // 영화 세부 정보를 가져오는 함수 호출
+            select:(result) => result.data,
         })
 
 
