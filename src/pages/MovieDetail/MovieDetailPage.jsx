@@ -8,6 +8,10 @@ import MovieTrailer from './MovieTrailer';
 
 const MovieDetailPage = () => {
   const { id } = useParams(); // URL 파라미터에서 영화 ID를 가져옴
+
+    // id가 올바르게 전달되고 있는지 확인
+    console.log("Movie ID from URL params:", id);
+    
   const { data, isLoading, isError, error } = useMovieDetailPageQuery(id); // ID를 훅에 전달
 
   const [showTrailer, setShowTrailer] = useState(false);

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useMovieTrailerQuery } from '../../hooks/useMovieTrailer';
 import { Spinner, Alert, Modal, Button } from 'react-bootstrap';
-import YouTube from 'react-youtube'; // YouTube 컴포넌트를 import
+import YouTube from 'react-youtube';
 
 const MovieTrailer = ({ id, show, handleClose }) => {
-    // useParams를 사용하지 않고 props로 받은 id를 사용
     const { data, isLoading, isError, error } = useMovieTrailerQuery(id); // ID를 훅에 전달
 
     if (isLoading) {
@@ -23,8 +22,8 @@ const MovieTrailer = ({ id, show, handleClose }) => {
 
     // YouTube 플레이어의 옵션 설정
     const opts = {
-      height: '390',
-      width: '640',
+      height: '100%',
+      width: '100%',
       playerVars: {
         autoplay: 1, // 자동 재생
       },
@@ -33,8 +32,23 @@ const MovieTrailer = ({ id, show, handleClose }) => {
     // 비디오 ID가 올바른지 확인
     console.log("YouTube Video ID:", data?.key);
 
-
-    
+    // 모달 콘텐츠 렌더링 함수
+    const modalContent = () => {
+      if (!data || data.results.length === 0) {
+        return (
+          <Alert key="danger" variant="danger">
+            There is no trailer for this video
+          </Alert>
+        );
+      }
+      return (
+        <YouTube
+          videoId={data.results[0].key}
+          opts={opts}
+          className="youtube-frame"
+        />
+      );
+    };
 
     return (
       <Modal show={show} onHide={handleClose} size="lg" centered>
@@ -42,11 +56,7 @@ const MovieTrailer = ({ id, show, handleClose }) => {
           <Modal.Title>Watch Trailer</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {data ? (
-            <YouTube videoId={data.key} opts={opts} />
-          ) : (
-            <p>No trailer available</p>
-          )}
+          {modalContent()}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
