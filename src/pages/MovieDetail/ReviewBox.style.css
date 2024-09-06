@@ -1,7 +1,16 @@
+.review-Box {
+  transition: max-height 0.3s ease;
+  background-color: rgb(53, 53, 53);
+  border: 1px solid rgb(109, 109, 109);
+  margin-bottom: 25px;
+
+}
+
+
 .textBox {
     max-height: 100px;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+   
   }
   
   .textBox.fold {
@@ -15,8 +24,8 @@
   
   .more-button {
     background: none;
-    border: 2px solid red;
-    color: yellow;
+    /* border: 2px solid red; */
+    color: #f30c0c;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;

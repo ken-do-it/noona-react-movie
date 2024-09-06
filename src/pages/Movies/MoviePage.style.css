@@ -1,3 +1,8 @@
+/* 네브바와 페이지 간의 여백 */
+.movie-page-container {
+  margin-top: 50px; /* 상단에 20px의 여백 추가 */
+}
+
 
 /* 페이지네이션 전체 스타일 */
 .pagination {
@@ -39,3 +44,31 @@
     border-color: red; /* 활성화된 페이지는 테두리도 빨간색 */
   }
   
+
+  /* 화면 너비가 991px 이하일 때 적용되는 스타일 */
+@media (max-width: 991px) {
+  .movie-page-container {
+    margin-top: 20px; /* 상단 여백을 줄임 */
+  }
+
+  /* 페이지네이션 아이템 크기 변경 */
+  .pagination .page-link {
+    font-size: 14px; /* 글자 크기 줄이기 */
+    padding: 5px 10px; /* 내부 여백 줄이기 */
+  }
+
+  /* 카드 크기 조정 (영화 카드 크기 예시) */
+  .movie-card {
+    width: 100%; /* 가로폭을 100%로 설정하여 화면 전체를 차지하도록 함 */
+  }
+
+  /* 페이지네이션 숨기기 (모바일 버전에서) */
+  .pagination {
+    display: none; /* 모바일에서는 페이지네이션 숨기기 */
+  }
+
+  /* 다른 요소들을 모바일에 맞게 재조정 */
+  .movie-slider {
+    display: block; /* 슬라이더를 모바일에서 사용 */
+  }
+}

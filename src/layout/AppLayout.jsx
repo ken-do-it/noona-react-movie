@@ -30,7 +30,7 @@ const AppLayout = () => {
     <div>
          <Navbar expand="lg" className="nav-body" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#"><img src="https://cdnweb01.wikitree.co.kr/webdata/editor/202305/09/img_20230509113254_b805310c.webp" alt="" className='net-logo' /></Navbar.Brand>
+        <Navbar.Brand as={Link} to="/"><img src="https://cdnweb01.wikitree.co.kr/webdata/editor/202305/09/img_20230509113254_b805310c.webp" alt="" className='net-logo' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

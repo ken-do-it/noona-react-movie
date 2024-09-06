@@ -76,7 +76,7 @@ const showGenre =( genreIdList) => {
 
 
         </div>
-        MovieCard
+        
     </div>
   )
 }
