@@ -3,25 +3,19 @@ import api from "../utils/api";
 
 
 
-const fetchMovieTrailer = async(queryKey)=> {
-  const id = queryKey[1];
-  console.log("Fetching trailer for movie ID:", id);
-  
-  const response = await api.get(`/movie/${id}/videos?language=en-US`);
-  console.log("API Response:", response);
-
-  if (!response.data || response.data.results.length === 0) {
-      console.log("No trailers found for this movie.");
-      return null;
-} return response.data;
+const fetchMovieTrailer =(queryKey)=>{
+    const id = queryKey[1];
+    return api.get(`/movie/${id}/videos?language=en-US`)    
 }
 
 // const fetchMovieTrailer = async ({ queryKey }) => {
 //   const id = queryKey[1];
+//    console.log("Fetching trailer for movie ID:", id);  // undefined
+
 
 //   // API 응답을 확인하기 위해 콘솔 로그 추가
 //   const response = await api.get(`/movie/${id}/videos?language=en-US`);
-//   console.log("API Response:", response.data);
+//   console.log("API Response:", response.data);  // undefined 
 
 //   // 트레일러를 필터링
 //   const trailer = response.data.results.find(video => {
