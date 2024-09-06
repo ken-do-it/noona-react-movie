@@ -13,6 +13,7 @@ const MovieDetailPage = () => {
     console.log("Movie ID from URL params:", id);
     
   const { data, isLoading, isError, error } = useMovieDetailPageQuery(id); // ID를 훅에 전달
+  // const { data: videoData } = useMovieTrailerQuery(id)
 
   const [showTrailer, setShowTrailer] = useState(false);
 
@@ -58,13 +59,15 @@ const MovieDetailPage = () => {
           <Button variant="primary" onClick={handleTrailerShow}>
             예고편 보기
           </Button>
+            {/* MovieTrailer 모달에 ID와 show, handleClose 전달 */}
+          <MovieTrailer show={showTrailer} handleClose={handleTrailerClose} id={id} />
         </Col>
       </Row>
 
       <RecommendMovie id={id}/>
       <Reviews id={id}/>
 
-      <MovieTrailer show={showTrailer} handleClose={handleTrailerClose} />
+    
 
 
     </Container>
