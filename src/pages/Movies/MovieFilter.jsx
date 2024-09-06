@@ -1,15 +1,14 @@
-// MovieFilter.jsx
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import './MovieFilter.style.css';  // CSS 파일 가져오기
 
 const MovieFilter = ({ sortOrder, handleSortOrderChange, genre, handleGenreChange }) => {
   return (
-    <div>
+    <div className="movie-filter">
       {/* Filter Section */}
       <Form.Group controlId="sortOrder">
         <Form.Label>Sort by Popularity</Form.Label>
         <Form.Control as="select" value={sortOrder} onChange={handleSortOrderChange}>
-          {/* <option value="default">Default</option> */}
           <option value="popularity_desc">Most Popular</option>
           <option value="popularity_asc">Least Popular</option>
         </Form.Control>
