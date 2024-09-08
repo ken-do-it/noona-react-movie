@@ -5,7 +5,6 @@ import { Spinner, Alert, Container, Row, Col } from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard.jsx';
 import MovieFilter from './MovieFilter';
 import MoviePagination from './MoviePagination';
-import MovieSlider from '../../common/MovieSlider/MovieSlider';
 import './MoviePage.style.css';
 import { useMediaQuery } from 'react-responsive'; // 화면 크기 기반 조건부 렌더링
 
@@ -15,7 +14,7 @@ const MoviePage = () => {
   const [sortOrder, setSortOrder] = useState('default'); // 정렬 상태
   const [genre, setGenre] = useState(''); // 장르 필터 상태
   const keyword = query.get("q") || ""; // 검색어 가져오기 (없을 경우 빈 문자열)
-  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 480px)' }); // 모바일 여부
 
   useEffect(() => {
     setPage(1); // 검색어가 변경되면 페이지를 1로 초기화
@@ -87,7 +86,7 @@ const MoviePage = () => {
       <Container>
         <Row>
           <Col className="text-center my-5">
-            <h3>검색 결과가 없습니다</h3>
+            <h3>No results found</h3>
           </Col>
         </Row>
       </Container>
@@ -107,27 +106,23 @@ const MoviePage = () => {
             />
           </Col>
           <Col lg={8} xs={12}>
-            {isMobile ? (
-              <MovieSlider title="Movies" movies={sortedMovies()} />
-            ) : (
-              <>
-                <Row>
-                  {sortedMovies().map((movie, index) => (
-                    <Col key={index} lg={4} xs={12}>
-                      <MovieCard movie={movie} />
-                    </Col>
-                  ))}
-                </Row>
-                <MoviePagination
-                  page={page}
-                  handleFirstPage={handleFirstPage}
-                  handleLastPage={handleLastPage}
-                  handlePageClick={handlePageClick}
-                  totalPages={data?.total_pages}
-                  endPage={endPage}
-                  startPage={startPage}
-                />
-              </>
+            <Row className={isMobile ? 'mobile-movie-list' : ''}>
+              {sortedMovies().map((movie, index) => (
+                <Col key={index} lg={4} xs={12}>
+                  <MovieCard movie={movie} />
+                </Col>
+              ))}
+            </Row>
+            {!isMobile && (
+              <MoviePagination
+                page={page}
+                handleFirstPage={handleFirstPage}
+                handleLastPage={handleLastPage}
+                handlePageClick={handlePageClick}
+                totalPages={data?.total_pages}
+                endPage={endPage}
+                startPage={startPage}
+              />
             )}
           </Col>
         </Row>

@@ -1,0 +1,25 @@
+/* MovieTrailer.style.css */
+
+/* YouTube 프레임 반응형 스타일 */
+.youtube-frame {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  
+  /* 데스크탑 이상일 때 */
+  @media (min-width: 769px) {
+    .youtube-frame {
+      width: 711px; /* 데스크탑일 때 고정 너비 */
+      height: 400px; /* 고정 높이 */
+    }
+  }
+  
+  /* 모바일일 때 */
+  @media (max-width: 768px) {
+    .youtube-frame {
+      width: 100%; /* 모바일일 때 100% 너비 */
+      height: auto; /* 높이는 자동 조정 */
+    }
+  }
+  
